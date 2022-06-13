@@ -11,6 +11,12 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
+    "paths": {
+      "ngx-angular-jsonapi": [
+        "dist/ngx-angular-jsonapi/ngx-angular-jsonapi",
+        "dist/ngx-angular-jsonapi"
+      ]
+    },
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
