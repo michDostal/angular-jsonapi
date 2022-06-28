@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { find } from 'lodash-es';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 import { JsonApiModel } from '../models/json-api.model';
@@ -11,6 +10,7 @@ import { DatastoreConfig } from '../interfaces/datastore-config.interface';
 import { ModelConfig } from '../interfaces/model-config.interface';
 import { AttributeMetadata } from '../constants/symbols';
 import 'reflect-metadata';
+import { find } from 'lodash';
 
 export type ModelType<T extends JsonApiModel> = new(datastore: JsonApiDatastore, data: any) => T;
 
