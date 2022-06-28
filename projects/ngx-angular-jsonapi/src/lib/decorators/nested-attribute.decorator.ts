@@ -70,16 +70,13 @@ export function NestedAttribute(options: AttributeDecoratorOptions = {}): Proper
       }
     };
 
-    const getter = function() {
-      // @ts-ignore
+    const getter = function(this:any) {
       return this[`_${propertyName}`];
     };
 
-    const setter = function(newVal: any) {
+    const setter = function(this: any, newVal: any) {
       const targetType = Reflect.getMetadata('design:type', target, propertyName);
-      // @ts-ignore
       this[`_${propertyName}`] = converter(targetType, newVal);
-      // @ts-ignore
       updateMetadata(this);
     };
 

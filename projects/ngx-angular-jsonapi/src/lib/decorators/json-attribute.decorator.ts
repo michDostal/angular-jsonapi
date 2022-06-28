@@ -47,19 +47,15 @@ export function JsonAttribute(options: AttributeDecoratorOptions = {}): Property
       Reflect.defineMetadata('AttributeMapping', mappingMetadata, target);
     };
 
-    const getter = function() {
-      // @ts-ignore
+    const getter = function(this:any) {
       if (this.nestedDataSerialization) {
-        // @ts-ignore
         return converter(Reflect.getMetadata('design:type', target, propertyName), this[`_${propertyName}`], true);
       }
-      // @ts-ignore
       return this[`_${propertyName}`];
     };
 
-    const setter = function(newVal: any) {
+    const setter = function(this:any, newVal: any) {
       const targetType = Reflect.getMetadata('design:type', target, propertyName);
-      // @ts-ignore
       this[`_${propertyName}`] = converter(targetType, newVal);
     };
 
