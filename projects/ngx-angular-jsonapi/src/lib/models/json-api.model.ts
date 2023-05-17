@@ -16,6 +16,7 @@ const AttributeMetadataIndex: string = AttributeMetadata as any;
 
 export class JsonApiModel {
   id!: string;
+  meta!: any;
   public modelInitialization = false;
 
   [key: string]: any;
@@ -27,6 +28,9 @@ export class JsonApiModel {
       this.modelInitialization = true;
       this.id = data.id;
       Object.assign(this, data.attributes);
+      if (data.meta) {
+        this.meta = data.meta;
+      }
       this.modelInitialization = false;
     }
   }

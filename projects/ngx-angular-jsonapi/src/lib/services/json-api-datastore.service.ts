@@ -87,7 +87,7 @@ export class JsonApiDatastore {
     const url: string = this.buildUrl(modelType, params, undefined, customUrl);
     return this.http.get(url, {headers: requestHeaders})
       .pipe(
-          // @ts-ignore
+        // @ts-ignore
         map((res: any) => this.extractQueryData(res, modelType)),
         catchError((res: any) => this.handleError(res))
       );
@@ -104,7 +104,7 @@ export class JsonApiDatastore {
 
     return this.http.get(url, requestOptions)
       .pipe(
-          // @ts-ignore
+        // @ts-ignore
         map((res: HttpResponse<object>) => this.extractQueryData(res, modelType, true)),
         catchError((res: any) => this.handleError(res))
       );
@@ -122,7 +122,7 @@ export class JsonApiDatastore {
 
     return this.http.get(url, requestOptions)
       .pipe(
-          // @ts-ignore
+        // @ts-ignore
         map((res: HttpResponse<object>) => this.extractRecordData(res, modelType)),
         catchError((res: any) => this.handleError(res))
       );
@@ -187,7 +187,7 @@ export class JsonApiDatastore {
 
     return this.http.delete(url, requestOptions)
       .pipe(
-          // @ts-ignore
+        // @ts-ignore
         catchError((res: HttpErrorResponse) => this.handleError(res))
       );
   }
@@ -291,7 +291,7 @@ export class JsonApiDatastore {
               data: relationshipData
             };
           }
-        }  else if (data[key] === null) {
+        } else if (data[key] === null) {
           const entity = belongsToMetadata.find((entity: any) => entity.propertyName === key);
 
           if (entity) {
@@ -387,6 +387,10 @@ export class JsonApiDatastore {
       model.modelInitialization = true;
       model.id = body.data.id;
       Object.assign(model, body.data.attributes);
+      if (body.data.meta) {
+        model.meta = {};
+        Object.assign(model.meta, body.data.meta);
+      }
       model.modelInitialization = false;
     }
 
