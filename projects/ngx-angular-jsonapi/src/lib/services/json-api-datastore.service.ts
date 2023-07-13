@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
@@ -27,15 +27,13 @@ const AttributeMetadataIndex: string = AttributeMetadata as any;
 export class JsonApiDatastore {
 
   protected config: DatastoreConfig = {};
+  private http = inject(HttpClient);
   private globalHeaders!: HttpHeaders;
   private globalRequestOptions: object = {};
   private internalStore: { [type: string]: { [id: string]: JsonApiModel } } = {};
   private toQueryString: (params: any) => string = this.datastoreConfig.overrides
   && this.datastoreConfig.overrides.toQueryString ?
     this.datastoreConfig.overrides.toQueryString : this._toQueryString;
-
-  constructor(protected http: HttpClient) {
-  }
 
   set headers(headers: HttpHeaders) {
     this.globalHeaders = headers;
