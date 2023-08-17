@@ -27,7 +27,7 @@ const AttributeMetadataIndex: string = AttributeMetadata as any;
 export class JsonApiDatastore {
 
   protected config: DatastoreConfig = {};
-  private http = inject(HttpClient);
+  protected http = inject(HttpClient);
   private globalHeaders!: HttpHeaders;
   private globalRequestOptions: object = {};
   private internalStore: { [type: string]: { [id: string]: JsonApiModel } } = {};
