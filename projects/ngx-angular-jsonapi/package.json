@@ -1,10 +1,10 @@
 {
   "name": "@housemd/ngx-angular-jsonapi",
-  "version": "v16.0.2",
+  "version": "v17.0.0",
   "private": false,
   "peerDependencies": {
-    "@angular/common": "^16.0.0",
-    "@angular/core": "^16.0.0",
+    "@angular/common": "^17.0.0",
+    "@angular/core": "^17.0.0",
     "lodash": "^4.17.21",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.5.0"
